@@ -29,7 +29,7 @@ services:
     command: >
       sh -c "yarn db:bootstrap && yarn start:prod"
     ports:
-      - 9090:9090
+      - "${PROMETHEUS_PORT:-9090}:9090"
   indexer-gateway:
     image: subsquid/hydra-indexer-gateway:5
     restart: unless-stopped
@@ -39,7 +39,7 @@ services:
       - indexer-status-service
       - indexer
     ports:
-      - "4010:8080"
+      - "${GATEWAY_PORT:-4010}:8080"
     environment:
       - DEV_MODE=true
       - DB_NAME=indexer
