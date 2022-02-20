@@ -19,7 +19,7 @@ services:
       - DB_PASS=postgres
       - DB_PORT=5432
       - REDIS_URI=redis://redis:6379/0
-      - WS_PROVIDER_ENDPOINT_URI=wss://api.phala.network/ws
+      - WS_PROVIDER_ENDPOINT_URI=${WS_PROVIDER_ENDPOINT_URI:-wss://khala.api.onfinality.io/public-ws}
       - BUNDLE_TYPES=/configs/typesBundle.json
     volumes:
       - "./typesBundle.json:/configs/typesBundle.json"
