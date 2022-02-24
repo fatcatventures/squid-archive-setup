@@ -12,7 +12,7 @@ services:
     image: subsquid/hydra-indexer-evm:5
     restart: "no"
     environment:
-      - WORKERS_NUMBER=3
+      - WORKERS_NUMBER=${WORKERS_NUMBER:-3}
       - DB_NAME=indexer
       - DB_HOST=db
       - DB_USER=postgres
@@ -23,6 +23,7 @@ services:
       - BLOCK_HEIGHT=0 # starting block height
       - WS_PROVIDER_ENDPOINT_URI=wss://moonriver.api.onfinality.io/public-ws
       - BUNDLE_TYPES=/configs/typesBundle.json
+      - SUBSTRATE_API_CALL_RETRIES=${SUBSTRATE_API_CALL_RETRIES:-5}
     volumes:
       - "./typesBundle.json:/configs/typesBundle.json"
     depends_on:
